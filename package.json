@@ -1,0 +1,16 @@
+{
+    "name": "venuesphere",
+    "version": "1.0.0",
+    "description": "",
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "@biomejs/biome": "^1.9.1",
+        "typescript": "^5.5.3"
+    },
+    "scripts": {
+        "dev:frontend": "pnpm --filter=frontend dev",
+        "dev:backend": "nodemon --exec ts-node src/index.ts"
+    }
+}
