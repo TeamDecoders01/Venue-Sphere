@@ -1,0 +1,101 @@
+/* UserProfile.css */
+
+/* Overall container for the profile page */
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Ensure full viewport height */
+}
+
+/* Container for profile content */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    /* Take up available space, pushing content below Navbar */
+    background-color: #f5f7fa;
+    padding: 20px;
+}
+
+/* Profile card styling */
+.profile-card {
+    background-color: #ffffff;
+    padding: 2.5em;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* Profile heading styling */
+.profile-heading {
+    margin-bottom: 2em;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Form styling */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+/* Button styling */
+.edit-button {
+    padding: 0.75em 1.5em;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #818cf8;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: fit-content;
+    margin: 1.5em auto;
+}
+
+.edit-button:hover {
+    background-color: #f8b4a6;
+}
+
+/* Applying existing .coolinput styles */
+.coolinput {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.coolinput label.text {
+    font-size: 1rem;
+    color: #818cf8;
+    font-weight: 700;
+    margin-bottom: 0.75em;
+}
+
+.coolinput input[type="text"].input,
+.coolinput input[type="password"].input {
+    padding: 15px 12px;
+    font-size: 1rem;
+    border: 2px #818cf8 solid;
+    border-radius: 5px;
+    background: #ffffff;
+}
+
+.coolinput input[type="text"].input:focus,
+.coolinput input[type="password"].input:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+/* Styles for non-editable (disabled) fields */
+.coolinput input[type="text"].input[disabled],
+.coolinput input[type="password"].input[disabled] {
+    background-color: #f3f3f3;
+    border-color: #acb0b6;
+    color: #959aa5;
+    cursor: not-allowed;
+}

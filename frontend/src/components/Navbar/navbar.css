@@ -1,0 +1,146 @@
+.login-container {
+    padding: 20px;
+    text-align: center;
+}
+
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(90deg,
+            #5e63b6,
+            #27296d);
+    /* Blue to dark gradient */
+    color: #f0f0f0;
+    /* Light text color to contrast with the dark background */
+}
+
+
+.navbar-logo,
+.navbar-links,
+.navbar-profile {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    /* Center items vertically */
+}
+
+
+.navbar-logo {
+    justify-content: flex-start;
+    /* Align logo to the left */
+}
+
+
+.navbar-links {
+    justify-content: center;
+    /* Center links in the middle */
+    gap: 70px;
+    /* Adjusted space between links */
+}
+
+
+.navbar-profile {
+    justify-content: flex-end;
+    /* Align profile button to the right */
+    position: relative;
+    /* Position relative for dropdown menu */
+}
+
+
+.logo-image {
+    height: 40px;
+    /* Adjust as needed */
+    width: auto;
+}
+
+
+.profile-icon {
+    height: 30px;
+    /* Adjust as needed */
+    width: auto;
+    border-radius: 50%;
+    /* Make the image circular */
+    object-fit: cover;
+    /* Ensure the image covers the circle */
+}
+
+
+.navbar-logo a,
+.navbar-links a,
+.profile-button {
+    color: #f0f0f0;
+    /* Light text color for contrast */
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+.navbar-logo a {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+.navbar-links a {
+    color: #f0f0f0;
+    /* Light text color for links */
+}
+
+
+.navbar-links a:hover {
+    text-decoration: underline;
+    color: #ffa500;
+}
+
+
+.profile-button {
+    background-color: #27296d;
+    /* Neutral button color */
+    border: none;
+    padding: 5px;
+    /* Adjusted padding */
+    cursor: pointer;
+    border-radius: 120px;
+    transition: background-color 0.3s ease;
+}
+
+
+.profile-button:hover {
+    background-color: #ffa500;
+    /* Slightly darker neutral color for hover effect */
+}
+
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    /* Neutral background color */
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.dropdown-menu a {
+    color: #333;
+    /* Neutral text color */
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0;
+    /* Neutral background color for hover effect */
+}
