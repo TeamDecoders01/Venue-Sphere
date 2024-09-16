@@ -8,7 +8,6 @@ const Homepage: React.FC = () => {
     <div>
       <Navbar />
       <main className="homepage-content">
-        <h1>Welcome to the Homepage</h1>
         <Banner></Banner>
       </main>
     </div>
