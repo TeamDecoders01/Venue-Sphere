@@ -1,0 +1,45 @@
+/* Banner.css */
+
+.banner {
+    position: relative;
+    background: url('/path/to/your/banner-image.jpg') no-repeat center center;
+    background-size: cover;
+    height: 400px;
+    /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    text-align: center;
+}
+
+.banner-content {
+    z-index: 2;
+    /* Ensure content is above background image */
+}
+
+.banner-heading {
+    font-size: 3rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.banner-subheading {
+    font-size: 1.5rem;
+    margin: 0.5em 0;
+}
+
+.banner-button {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #818cf8;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.banner-button:hover {
+    background-color: #4a90e2;
+}
