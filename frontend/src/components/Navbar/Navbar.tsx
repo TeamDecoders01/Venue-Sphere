@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
       <div className="navbar-logo">
         <Link to="/">
           <img
-            src="https://example.com/path-to-your-logo-image.jpg"
+            src="https://img.freepik.com/premium-vector/spear-logo-icon-vector-image_665655-6327.jpg"
             alt="MyLogo"
             className="logo-image"
           />
@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
           <Link to="/venues">Venues</Link>
         </li>
         <li>
-          <Link to="/services">Bookings</Link>
+          <Link to="/bookings">Bookings</Link>
         </li>
       </ul>
       <div className="navbar-profile">
