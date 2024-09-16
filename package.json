@@ -11,6 +11,6 @@
     },
     "scripts": {
         "dev:frontend": "pnpm --filter=frontend dev",
-        "dev:backend": "nodemon --exec ts-node src/index.ts"
+        "dev:backend": "pnpm --filter=backend dev"
     }
 }

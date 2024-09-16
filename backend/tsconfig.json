@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "target": "ES2020",
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "sourceMap": true,
+        "alwaysStrict": true,
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "./dist",
+        "baseUrl": ".",
+        "moduleResolution": "Node",
+        "allowSyntheticDefaultImports": true
+    },
+    "exclude": ["node_modules", "**/node_modules/*"],
+    "include": ["src/**/*.ts"]
+}
