@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Venues.css';
+import Navbar from '../../components/Navbar/Navbar';
 
-// Define the Venue interface
 interface Venue {
   _id: string;
   name: string;
@@ -10,37 +11,33 @@ interface Venue {
   capacity: number;
   price: number;
   isAvailable: boolean;
+  description: string;
+  timeslot: string;
 }
 
-// VenuePage component
 const VenuePage: React.FC = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedVenueId, setSelectedVenueId] = useState<string | null>(null);
-  const [date, setDate] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [timeslot, setTimeslot] = useState<string>('');
+  const [formVisibility, setFormVisibility] = useState<{ [key: string]: boolean }>({});
   const navigate = useNavigate();
 
-  // Fetch available venues on component mount
   useEffect(() => {
     const fetchVenues = async () => {
       try {
-        const config = {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-            }
-          };
-        const response = await axios.get('http://localhost:8000/venues',{
-            withCredentials: true,
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-              ...config.headers,
-            },
-          }); // Assuming this hits the backend to get venues
+        const response = await axios.get('http://localhost:8000/venues', {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}` || '',
+          },
+        });
         setVenues(response.data);
         setLoading(false);
       } catch (err) {
+        console.error('Error fetching venues:', err);
         setError('Failed to fetch venues');
         setLoading(false);
       }
@@ -48,15 +45,35 @@ const VenuePage: React.FC = () => {
     fetchVenues();
   }, []);
 
-  // Handle venue booking
-  const handleBooking = async (venueId: string) => {
+  const handleBooking = async () => {
     try {
-      const response = await axios.post('/venues/book', { venueId, date });
+      await axios.post('http://localhost:8000/venues/book', {
+        venueId: selectedVenueId,
+        date: new Date().toISOString().split('T')[0],
+        description,
+        timeslot
+      }, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}` || '',
+        },
+      });
       alert('Venue booked successfully!');
-      navigate('/bookings'); // Redirect to bookings page after successful booking
-    } catch (err: any) {
+      setDescription('');
+      setTimeslot('');
+      setFormVisibility({});
+      navigate('/bookings');
+    } catch (err) {
       setError('Error booking venue. Please try again.');
     }
+  };
+
+  const toggleFormVisibility = (venueId: string) => {
+    setFormVisibility(prevState => ({
+      ...prevState,
+      [venueId]: !prevState[venueId]
+    }));
+    setSelectedVenueId(venueId);
   };
 
   if (loading) {
@@ -69,6 +86,7 @@ const VenuePage: React.FC = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>Available Venues</h1>
       <div className="venue-list">
         {venues.length === 0 ? (
@@ -76,32 +94,58 @@ const VenuePage: React.FC = () => {
         ) : (
           venues.map((venue) => (
             <div key={venue._id} className="venue-card">
-              <h2>{venue.name}</h2>
-              <p>Location: {venue.location}</p>
-              <p>Capacity: {venue.capacity} people</p>
-              <p>Price: ${venue.price} per day</p>
-              <p>Status: {venue.isAvailable ? 'Available' : 'Not Available'}</p>
-              <div>
-                <label>
-                  Select Date:
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                  />
-                </label>
-                <br />
-                {venue.isAvailable ? (
+              <h2 className="venue-name">{venue.name}</h2>
+              <p className="venue-location">Location: {venue.location}</p>
+              <p className="venue-capacity">Capacity: {venue.capacity} people</p>
+              <p className="venue-price">Price: ${venue.price}</p>
+              {venue.isAvailable ? (
+                <div className="venue-actions">
                   <button
-                    onClick={() => handleBooking(venue._id)}
-                    disabled={!date}
+                    className="book-button"
+                    type="button"
+                    onClick={() => toggleFormVisibility(venue._id)}
                   >
-                    Book Venue
+                    Book Now
                   </button>
-                ) : (
-                  <button disabled>Not Available</button>
-                )}
-              </div>
+                </div>
+              ) : (
+                <button className="not-available-button" type="button" disabled>
+                  Not Available
+                </button>
+              )}
+              {formVisibility[venue._id] && (
+                <div className="booking-form">
+                  <h3>Book {venue.name}</h3>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      handleBooking();
+                    }}
+                  >
+                    <label htmlFor="description" className="booking-label">
+                      Description
+                      {/* biome-ignore lint/style/useSelfClosingElements: <explanation> */}
+                      <textarea
+                        id="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                      ></textarea>
+                    </label>
+                    <label htmlFor="timeslot" className="booking-label">
+                      Timeslot
+                      <input
+                        type="datetime-local"
+                        id="timeslot"
+                        value={timeslot}
+                        onChange={(e) => setTimeslot(e.target.value)}
+                        required
+                      />
+                    </label>
+                    <button type="submit" className="book-button">Submit</button>
+                  </form>
+                </div>
+              )}
             </div>
           ))
         )}

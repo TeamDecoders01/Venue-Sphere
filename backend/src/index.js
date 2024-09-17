@@ -13,7 +13,7 @@ const venueRouter = require('./routes/venueRouter');
 
 app.use(
     cors({
-        origin: "*",
+        origin: process.env.FRONTEND_URL,
         credentials: true
     })
 );
