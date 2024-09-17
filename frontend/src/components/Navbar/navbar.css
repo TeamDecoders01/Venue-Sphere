@@ -1,3 +1,4 @@
+/* General styles */
 .login-container {
     padding: 20px;
     text-align: center;
@@ -5,21 +6,17 @@
     /* Light background for contrast */
 }
 
-
 /* Navbar styles */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background: linear-gradient(90deg,
-            #5e63b6,
-            #27296d);
+    background: linear-gradient(90deg, #5e63b6, #27296d);
     /* Blue to dark gradient */
     color: #f0f0f0;
     /* Light text color for contrast */
 }
-
 
 .navbar-logo,
 .navbar-links,
@@ -29,11 +26,9 @@
     align-items: center;
 }
 
-
 .navbar-logo {
     justify-content: flex-start;
 }
-
 
 .navbar-links {
     justify-content: center;
@@ -41,51 +36,18 @@
     /* Adjust space between links */
 }
 
-
 .navbar-profile {
     justify-content: flex-end;
     position: relative;
     /* Necessary for dropdown positioning */
 }
 
-
 .logo-image {
     height: 40px;
     width: auto;
-    border-radius: 400px;
-}
-
-
-.profile-icon {
-    height: 30px;
-    width: 30px;
     border-radius: 50%;
-    /* Circular profile image */
-    object-fit: cover;
-    /* Ensure the image fills the circle */
+    /* More rounded logo image */
 }
-
-
-.navbar-logo a,
-.navbar-links a,
-.profile-button {
-    color: #f0f0f0;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-
-.navbar-logo a {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-
-.navbar-links a:hover {
-    text-decoration: underline;
-    color: #ffa500;
-}
-
 
 .profile-button {
     background-color: #27296d;
@@ -97,11 +59,35 @@
     transition: background-color 0.3s ease;
 }
 
-
 .profile-button:hover {
     background-color: #ffa500;
 }
 
+.profile-image {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    /* Circular profile image */
+    object-fit: cover;
+    /* Ensure the image fills the circle */
+}
+
+.navbar-logo a,
+.navbar-links a {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar-logo a {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-links a:hover {
+    text-decoration: underline;
+    color: #ffa500;
+}
 
 .dropdown-menu {
     position: absolute;
@@ -120,7 +106,6 @@
     /* Slightly rounded dropdown */
 }
 
-
 .dropdown-menu a {
     color: #333;
     text-decoration: none;
@@ -130,17 +115,14 @@
     transition: background-color 0.3s ease;
 }
 
-
 .dropdown-menu a:hover {
     background-color: #f0f0f0;
 }
-
 
 /* Show dropdown when open */
 .navbar-profile:hover .dropdown-menu {
     display: flex;
 }
-
 
 /* Optional responsiveness */
 @media (max-width: 768px) {
@@ -148,7 +130,6 @@
         gap: 30px;
         font-size: 16px;
     }
-
 
     .navbar-logo a {
         font-size: 20px;
